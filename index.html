@@ -1,123 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Carta para Yuli</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carta para Yuli — Responsive</title>
   <style>
     :root{
-      --card-width: 760px;
+      --card-max-width: 760px;
       --card-padding: 34px;
-      --card-radius: 20px;
-      --bg1: #ffd1dc;
-      --bg2: #f7d6ff;
-      --bg3: #d7f0ff;
+      --card-radius: 18px;
+      --bg1: #ffdfe8;
+      --bg2: #f6e6ff;
+      --bg3: #dff4ff;
+      --text: #3b2b2b;
     }
 
     *{box-sizing:border-box}
-    html,body{
-      height:100%;
-      margin:0;
-      font-family: "Georgia", "Times New Roman", serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
-      background-size: 400% 400%;
-      animation: bgShift 18s ease infinite;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      color:#3b2b2b;
-    }
+    html,body{height:100%;margin:0;font-family: "Georgia", "Times New Roman", serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:var(--text);background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));background-size:400% 400%;animation:bgShift 18s ease infinite;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
 
-    @keyframes bgShift{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-    .stage{
+    .stage{width:100%;max-width:calc(var(--card-max-width) + 120px);padding:18px;position:relative;display:flex;flex-direction:column;align-items:center;gap:14px}
+
+    h1{margin:0;font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;font-size:clamp(18px,2.2vw,28px);color:#6b2b3a;text-shadow:0 1px 0 rgba(255,255,255,0.6)}
+
+    .carta{
       width:100%;
-      max-width:calc(var(--card-width) + 120px);
-      padding:20px;
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-    }
-
-    h1{
-      margin:0;
-      font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-      font-size:28px;
-      letter-spacing:1px;
-      color:#6b2b3a;
-      text-shadow:0 1px 0 rgba(255,255,255,0.6);
-    }
-
-    .carta {
-      width:100%;
-      max-width:var(--card-width);
+      max-width:var(--card-max-width);
       padding:var(--card-padding);
       background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,250,250,0.95));
       border-radius:var(--card-radius);
       box-shadow: 0 12px 30px rgba(80,40,60,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
-      font-size:18px;
+      font-size:clamp(15px,2.2vw,18px);
       line-height:1.6;
-      color:#3b2b2b;
       white-space:pre-wrap;
       transform-origin:center;
       opacity:0;
       transform: translateY(18px) scale(0.98);
       position:relative;
       z-index:2;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .firma{
-      margin-top:18px;
-      font-weight:700;
-      color:#7a2b3f;
-      font-size:18px;
-    }
+    .firma{margin-top:18px;font-weight:700;color:#7a2b3f;font-size:clamp(15px,2vw,18px)}
 
-    .sello {
-      position:absolute;
-      right: -18px;
-      top: -18px;
-      width:120px;
-      height:120px;
-      border-radius:50%;
+    .sello{
+      position:absolute;right:-14px;top:-14px;width:96px;height:96px;border-radius:50%;
       background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(255,255,255,0.05)),
                   linear-gradient(135deg, rgba(255,200,220,0.9), rgba(255,150,180,0.85));
-      box-shadow: 0 8px 20px rgba(120,40,70,0.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transform: rotate(-12deg);
-      z-index:1;
-      pointer-events:none;
+      box-shadow:0 8px 20px rgba(120,40,70,0.12);display:flex;align-items:center;justify-content:center;transform:rotate(-12deg);z-index:1;pointer-events:none;
     }
-    .sello span{font-size:28px; transform:translateY(2px)}
+    .sello span{font-size:24px;transform:translateY(2px)}
 
-    .float {
-      position:absolute;
-      pointer-events:none;
-      font-size:28px;
-      will-change:transform,opacity;
-      z-index:0;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    .float{position:absolute;pointer-events:none;font-size:28px;will-change:transform,opacity;z-index:0;text-shadow:0 2px 6px rgba(0,0,0,0.12)}
+
+    /* Ajustes para tablet y móvil */
+    @media (max-width:1024px){
+      :root{--card-padding:28px}
+      .sello{width:86px;height:86px;right:-12px;top:-12px}
     }
-
-    @media (max-width:820px){
-      .carta{font-size:16px; padding:22px}
+    @media (max-width:600px){
+      body{background-size:300% 300%}
+      :root{--card-padding:20px}
+      .carta{font-size:16px;padding:20px}
       .sello{display:none}
+    }
+
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important}
     }
   </style>
 </head>
 <body>
-  <div class="stage">
+  <div class="stage" role="main">
     <h1>Una carta para <strong>Yuli</strong></h1>
 
     <div class="carta" id="carta" aria-live="polite"></div>
@@ -128,7 +84,7 @@
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    // Texto completo de la carta (más extenso y romántico)
+    // Texto de la carta
     const texto = `Querida Yuli,
 
 Desde el primer instante en que te vi, supe que había encontrado algo único.
@@ -153,10 +109,18 @@ José 💖`;
 
     const cartaEl = document.getElementById('carta');
 
-    // **Velocidad fija** en ms por carácter (una sola velocidad para todo el texto)
+    // Velocidad fija para todo el texto (ms por carácter)
     const VELOCIDAD_MS = 120;
 
-    // función de escritura automática (respetando saltos de línea)
+    // Determina la densidad de elementos flotantes según ancho de pantalla
+    function getIntervalByWidth(){
+      const w = window.innerWidth;
+      if (w <= 420) return 1000;      // móviles: menos elementos
+      if (w <= 820) return 800;       // tablets pequeñas
+      return 700;                     // escritorio / tablets grandes
+    }
+
+    // Escritura automática (una sola velocidad)
     function escribirTexto(textoCompleto, velocidadMs, onComplete){
       cartaEl.textContent = "";
       let i = 0;
@@ -173,19 +137,23 @@ José 💖`;
       }, velocidadMs);
     }
 
-    // animación de entrada de la carta con GSAP
+    // Entrada de la carta con GSAP (usa transform 3D para mejor rendimiento en móviles)
     function animarCartaEntrada(){
       gsap.fromTo(cartaEl,
-        {opacity:0, y:18, scale:0.98},
-        {opacity:1, y:0, scale:1, duration:1.2, ease:"back.out(1.6)"}
+        {opacity:0, y:18, scale:0.98, force3D:true},
+        {opacity:1, y:0, scale:1, duration:1.0, ease:"back.out(1.4)", force3D:true}
       );
     }
 
-    // crear elementos flotantes (corazones, rosas, flores)
+    // Elementos flotantes (optimizado)
     const simbolos = ["❤️","🌹","🌸","💐","💞"];
     let flotantesInterval = null;
 
     function lanzarElemento(){
+      // Evitar crear demasiados elementos si el usuario tiene reduced-motion
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
       const el = document.createElement('div');
       el.className = 'float';
       el.textContent = simbolos[Math.floor(Math.random()*simbolos.length)];
@@ -193,16 +161,17 @@ José 💖`;
 
       const startX = Math.random() * window.innerWidth;
       const startY = window.innerHeight + 40;
-      const scale = 0.6 + Math.random() * 1.4;
-      const rotation = (Math.random() - 0.5) * 60;
+      const scale = 0.6 + Math.random() * 1.2;
+      const rotation = (Math.random() - 0.5) * 40;
 
-      gsap.set(el, {x: startX, y: startY, scale: scale, rotation: rotation, opacity: 0.95});
+      gsap.set(el, {x: startX, y: startY, scale: scale, rotation: rotation, opacity: 0.95, force3D:true});
 
-      const duration = 6 + Math.random() * 4;
+      // Duración adaptativa para suavizar en móviles
+      const duration = 5 + Math.random() * 3;
       gsap.to(el, {
         y: -120,
-        x: startX + (Math.random() - 0.5) * 160,
-        rotation: rotation + (Math.random() - 0.5) * 120,
+        x: startX + (Math.random() - 0.5) * 120,
+        rotation: rotation + (Math.random() - 0.5) * 80,
         opacity: 0,
         ease: "power1.out",
         duration: duration,
@@ -211,29 +180,46 @@ José 💖`;
     }
 
     function iniciarFlotantes(){
-      if (flotantesInterval) clearInterval(flotantesInterval);
-      flotantesInterval = setInterval(lanzarElemento, 700);
+      detenerFlotantes();
+      const interval = getIntervalByWidth();
+      flotantesInterval = setInterval(lanzarElemento, interval);
     }
     function detenerFlotantes(){
       if (flotantesInterval) clearInterval(flotantesInterval);
       flotantesInterval = null;
     }
 
-    // reproducir todo: animación carta + escritura + flotantes
+    // Reproducir todo
     function reproducirCarta(){
       if (window._intervaloEscritura) clearInterval(window._intervaloEscritura);
       cartaEl.textContent = "";
       animarCartaEntrada();
       iniciarFlotantes();
       escribirTexto(texto, VELOCIDAD_MS, () => {
-        setTimeout(detenerFlotantes, 2200);
+        // dejar flotantes un rato y luego detener para ahorrar recursos
+        setTimeout(detenerFlotantes, 2000);
       });
     }
 
-    // iniciar al cargar
+    // Iniciar al cargar
     window.addEventListener('load', () => {
       animarCartaEntrada();
-      setTimeout(() => reproducirCarta(), 700);
+      setTimeout(() => reproducirCarta(), 600);
+    });
+
+    // Ajustar densidad de flotantes si se redimensiona (por ejemplo, rotación de dispositivo)
+    let resizeTimeout = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        iniciarFlotantes();
+      }, 250);
+    });
+
+    // Mejora: pausa animaciones si la pestaña no está visible (ahorra batería)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) detenerFlotantes();
+      else iniciarFlotantes();
     });
   </script>
 </body>
